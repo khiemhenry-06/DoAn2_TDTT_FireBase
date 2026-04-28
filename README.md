@@ -100,8 +100,8 @@ VisionAI/
 
 ### Bước 1: Clone dự án
 ```bash
-git clone https://github.com/khiemhenry-06/doan2_tdtt.git
-cd doan2_tdtt
+git clone https://github.com/khiemhenry-06/DoAn2_TDTT_FireBase.git
+cd DoAn2_TDTT_FireBase
 ```
 
 ### Bước 2: Cấu hình Firebase
