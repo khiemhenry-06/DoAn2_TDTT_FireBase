@@ -1,0 +1,20 @@
+# VisionAI Backend - Dependencies
+# Cài đặt: pip install -r requirements.txt
+
+# FastAPI framework
+fastapi==0.115.0
+uvicorn==0.30.0
+python-multipart==0.0.9
+
+# Firebase
+firebase-admin==6.5.0
+
+# AI Models
+torch
+transformers
+pillow
+sentencepiece
+sacremoses
+
+# HTTP requests
+requests

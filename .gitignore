@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+venv/
+env/
+.venv/
+
+# Firebase
+serviceAccountKey.json
+firebase-debug.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Cache AI models
+*.bin
+*.safetensors
+.cache/
+
+# Misc
+*.log
+node_modules/
+
+# Docker
+docker-compose.yml
+Dockerfile.*
