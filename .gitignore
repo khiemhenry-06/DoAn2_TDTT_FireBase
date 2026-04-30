@@ -12,7 +12,9 @@ env/
 
 # Firebase
 serviceAccountKey.json
+firebase-config.js
 firebase-debug.log
+database_export.json
 
 # IDE
 .vscode/
@@ -35,5 +37,5 @@ desktop.ini
 node_modules/
 
 # Docker
-docker-compose.yml
-Dockerfile.*
+# docker-compose.yml
+# Dockerfile.*

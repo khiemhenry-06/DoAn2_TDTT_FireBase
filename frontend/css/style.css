@@ -1,6 +1,5 @@
 /* ============================================
    VisionAI - Design System
-   Tác giả: Lê Phạm Đăng Khiêm - 24120341
    Mô tả: Giao diện dark theme hiện đại
    ============================================ */
 
@@ -559,20 +558,24 @@ a:hover { color: var(--accent); }
 /* Analyze Button */
 .analyze-bar {
     display: flex;
+    justify-content: center;
     gap: 12px;
     margin-bottom: 32px;
+    width: 100%;
 }
 
 .btn-analyze {
     padding: 14px 32px;
     font-size: 15px;
     flex: 1;
-    max-width: 300px;
+    max-width: 500px; 
 }
 
 .btn-clear {
     padding: 14px 24px;
     font-size: 14px;
+    flex: 1;
+    max-width: 500px;
 }
 
 /* Results Section */

@@ -51,6 +51,31 @@ VisionAI là ứng dụng web full-stack sử dụng kiến trúc **Frontend (HT
 | **Database** | Cloud Firestore |
 | **Containerization** | Docker, Docker Compose, Nginx |
 
+### 📐 Kiến trúc hệ thống
+
+```
+┌─────────────────────────┐     HTTP Request     ┌─────────────────────────┐
+│       FRONTEND          │ ──────────────────►   │        BACKEND          │
+│  HTML / CSS / JS        │                       │   FastAPI (Python)      │
+│  Firebase Auth SDK      │ ◄──────────────────   │   AI Models (PyTorch)   │
+│  Port: 3000             │     JSON Response     │   Port: 8000            │
+└─────────┬───────────────┘                       └──────────┬──────────────┘
+          │                                                  │
+          │  Firebase Auth Token                             │  Firebase Admin SDK
+          ▼                                                  ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        FIREBASE (Google Cloud)                              │
+│   ┌─────────────────────────┐    ┌──────────────────────────────────┐      │
+│   │  Firebase Authentication│    │  Cloud Firestore                 │      │
+│   │  - Email/Password       │    │  analyses/{uid}/history/{doc_id} │      │
+│   │  - Google Sign-In       │    │  - image_name                    │      │
+│   └─────────────────────────┘    │  - english (caption)             │      │
+│                                  │  - vietnamese (dịch)             │      │
+│                                  │  - timestamp                     │      │
+│                                  └──────────────────────────────────┘      │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
 ---
 
 ## 📁 Cấu trúc dự án
@@ -104,15 +129,36 @@ git clone https://github.com/khiemhenry-06/DoAn2_TDTT_FireBase.git
 cd DoAn2_TDTT_FireBase
 ```
 
-### Bước 2: Cấu hình Firebase
+### Bước 2: Cấu hình Firebase (⚠️ BẮT BUỘC - Mỗi người dùng key riêng)
+
+> **Lưu ý quan trọng:** Dự án này **KHÔNG** đính kèm key Firebase. Mỗi người clone về cần tạo Firebase project riêng và lấy key của mình.
+
 1. Truy cập [Firebase Console](https://console.firebase.google.com/) → Tạo project mới
 2. Bật **Authentication** → Bật provider: `Email/Password` + `Google`
 3. Tạo **Cloud Firestore** → Chọn chế độ `test mode`
-4. Vào **Project Settings** → **General** → Lấy Web App Config → Cập nhật vào file `frontend/js/firebase-config.js`
-5. Vào **Project Settings** → **Service Accounts** → **Generate new private key** → Tải về và lưu thành `backend/serviceAccountKey.json`
+4. **Cấu hình Frontend:**
+   - Vào **Project Settings** → **General** → Tạo Web App → Lấy config
+   - Sao chép file `frontend/js/firebase-config.example.js` thành `frontend/js/firebase-config.js`
+   - Thay thế các giá trị `YOUR_...` bằng config vừa lấy
+5. **Cấu hình Backend:**
+   - Vào **Project Settings** → **Service Accounts** → **Generate new private key**
+   - Tải file JSON về và lưu thành `backend/serviceAccountKey.json`
+   - *(Tham khảo cấu trúc mẫu tại `backend/serviceAccountKey.example.json`)*
 
-### Bước 3: Cài đặt thư viện Python
+### Bước 3: Cài đặt thư viện Python (Sử dụng Môi trường ảo - Khuyến nghị)
+Để hệ thống chạy ổn định và tránh lỗi xung đột phiên bản, bạn nên tạo môi trường ảo (virtual environment) trước khi cài đặt:
+
 ```bash
+# 1. Tạo môi trường ảo (venv)
+python -m venv venv
+
+# 2. Kích hoạt môi trường ảo
+# - Trên Windows (dùng Command Prompt hoặc PowerShell):
+.\venv\Scripts\activate
+# - Trên macOS/Linux:
+source venv/bin/activate
+
+# 3. Cài đặt các thư viện cần thiết
 pip install -r requirements.txt
 ```
 
@@ -127,6 +173,7 @@ pip install -r requirements.txt
 **Terminal 1 - Chạy Backend:**
 ```bash
 cd backend
+# Nếu chưa kích hoạt môi trường ảo, hãy chạy lệnh kích hoạt trước: .\venv\Scripts\activate (Windows)
 python main.py
 ```
 → Server API chạy tại: `http://localhost:8000`
@@ -186,8 +233,8 @@ docker-compose down
 ## 🔒 Bảo mật
 
 Các file/thư mục sau **KHÔNG** được push lên GitHub (đã cấu hình trong `.gitignore`):
-- `serviceAccountKey.json` — Khóa bảo mật Firebase
-- `docker-compose.yml`, `Dockerfile.*` — Cấu hình môi trường local
+- `serviceAccountKey.json` — Khóa bảo mật Firebase (Cần tự tạo)
+- `firebase-config.js` — Cấu hình Firebase Frontend (Cần tự tạo)
 - `__pycache__/` — File cache Python
 - `*.bin`, `*.safetensors` — Cache mô hình AI
 - `node_modules/` — Thư viện Node.js

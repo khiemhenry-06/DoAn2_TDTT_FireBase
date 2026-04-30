@@ -1,6 +1,5 @@
 // ============================================
 // Firebase Configuration
-// Tác giả: Lê Phạm Đăng Khiêm - 24120341
 // ============================================
 // HƯỚNG DẪN: Thay thế các giá trị bên dưới bằng config 
 // từ Firebase Console > Project Settings > Your apps > Web app

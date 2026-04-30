@@ -1,0 +1,7 @@
+FROM nginx:alpine
+
+# Copy toàn bộ code frontend vào thư mục mặc định của Nginx
+COPY frontend/ /usr/share/nginx/html/
+
+# Expose port mặc định của Nginx
+EXPOSE 80

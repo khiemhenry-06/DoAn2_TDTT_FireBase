@@ -58,9 +58,14 @@ async def analyze_image(
             english=result["english"],
             vietnamese=result["vietnamese"]
         )
+        
+        # Tự động xuất ra file JSON cục bộ
+        from export_db import export_database
+        export_database()
+        
     except Exception as e:
         # Nếu Firestore lỗi, vẫn trả kết quả (không block user)
-        print(f"  ⚠️ Lỗi lưu Firestore: {e}")
+        print(f"  ⚠️ Lỗi lưu Firestore hoặc xuất JSON: {e}")
 
     return {
         "english": result["english"],
