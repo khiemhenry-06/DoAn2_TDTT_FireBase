@@ -247,7 +247,7 @@ Bạn có thể xem video demo đơn giản tại đây:
 ### YouTube
 [![Xem video demo](https://img.youtube.com/vi/99HdM95WKAI/0.jpg)](https://youtu.be/99HdM95WKAI)
 
-Hoặc mở trực tiếp qua link: [https://youtu.be/7s5cMaNOnK8](https://youtu.be/99HdM95WKAI)
+Hoặc mở trực tiếp qua link: [https://youtu.be/99HdM95WKAI](https://youtu.be/99HdM95WKAI)
 
 ---
 
