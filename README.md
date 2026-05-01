@@ -244,7 +244,7 @@ Các file/thư mục sau **KHÔNG** được push lên GitHub (đã cấu hình 
 
 ## 🎬 Video Demo
 
-[Link video demo](YOUR_VIDEO_LINK)
+[Link video demo](https://youtu.be/99HdM95WKAI)
 
 ---
 
